@@ -10,7 +10,7 @@
         <ul class="flex flex-row gap-5">
             <li><a href="/">Home</a></li>
             <li><a href="/scan">Scan</a></li>
-            <li>Learn</li>
+            <li><a href="/learn">Learn</a></li>
         </ul>
     </div>
 </div>

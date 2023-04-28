@@ -12,3 +12,10 @@ html, body {
 body {
     /* background-color: #f9f9f9; */
 }
+#input {
+    background-color: #405de6;
+    color: white;
+    border-radius: 15px;
+    padding: 15px;
+    border-color: black;
+  }
