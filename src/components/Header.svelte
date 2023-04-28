@@ -2,7 +2,7 @@
     import logo from '$lib/assets/logo.png';
 </script>
 
-<div class="flex py-5 pl-10 pr-24 justify-between items-center gap-10">
+<div class="flex py-5 pl-10 pr-24 justify-between items-center gap-10 bg-white">
     <div class="flex-shrink-0">
         <img alt="Logo" src={logo} class="h-10">
     </div>
