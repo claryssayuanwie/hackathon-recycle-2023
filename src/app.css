@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap');
 
 @tailwind base;
@@ -15,10 +16,6 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-#input {
-    background-color: #405de6;
-    color: white;
-    border-radius: 15px;
-    padding: 15px;
-    border-color: black;
-  }
+h1, h2 {
+    font-family: 'Arsenal', sans-serif;
+}
