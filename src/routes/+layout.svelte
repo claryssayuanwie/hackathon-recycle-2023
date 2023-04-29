@@ -7,5 +7,9 @@
     export let data: LayoutData;
 </script>
 
+<svelte:head>
+    <title>Recyclifi - {$page.data.title ?? ''}</title>
+</svelte:head>
+
 <Header  current={$page.data.title} />
 <slot />
