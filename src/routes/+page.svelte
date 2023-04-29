@@ -5,7 +5,7 @@
 	export let data: PageData;
 </script>
 
-<div class="p-10 lg:px-56 lg:py-10 gap-10 flex flex-col lg:flex-row bg-white w-full h-full justify-between">
+<div class="p-10 lg:px-56 lg:py-10 gap-10 flex flex-col lg:flex-row bg-white w-full min-h-full justify-between">
 	<!-- Mission Statement -->
 	<div>
 		<h1 class="mb-4 text-5xl font-bold">

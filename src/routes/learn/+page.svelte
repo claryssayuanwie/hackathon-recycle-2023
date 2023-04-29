@@ -40,18 +40,16 @@
 </script>
 
 <div class="bg-gradient-to-t from-green-100 to-white to-50% lg:to-80%">
-    <div class="flex gap-10 flex-col w-full min-h-full items-center p-10">
+    <div class="flex gap-10 flex-col min-w-full min-h-full items-center p-10">
         <h1 class="font-bold text-4xl">Learn about recycling codes!</h1>
         <ul class="flex gap-10 text-lg font-thin text-[#126a3a]">
             <li><button class:hoverable={currentTab !== 'Plastic'} class:selected={currentTab === 'Plastic'} on:click={changePlastic}>Plastic</button></li>
             <li><button class:hoverable={currentTab !== 'Glass'} class:selected={currentTab === 'Glass'} on:click={changeGlass}>Glass</button></li>
             <li><button class:hoverable={currentTab !== 'Paper'} class:selected={currentTab === 'Paper'} on:click={changePaper}>Paper</button></li>
         </ul>
-        <div class="flex flex-row flex-wrap px-20 justify-between gap-10">
+        <div class="flex flex-row flex-wrap px-20 gap-10 justify-evenly w-full">
             {#each currentImages as image}
-                <div class="col-4">
-                <img alt="Card" class="w-80" src={image}/>
-                </div>
+                <img alt="Card" class="w-80 lg:max-w-[27%]" src={image}/>
             {/each}
         </div>
     </div>
