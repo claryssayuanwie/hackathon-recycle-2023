@@ -7,7 +7,7 @@
 
 <div class="p-10 lg:px-56 lg:py-10 gap-10 flex flex-col lg:flex-row bg-white w-full h-full justify-between">
 	<!-- Mission Statement -->
-	<div class="">
+	<div>
 		<h1 class="mb-4 text-5xl font-bold">
 			Reinventing how we look at <span class="text-[#126a3a]">trash</span>
 		</h1>
@@ -23,7 +23,7 @@
 	<!-- Image -->
 	<div class="flex-shrink-0 w-full lg:w-1/2">
 		<img
-			class="w-full"
+			class="w-full rounded-md"
 			alt="About"
 			src={missionImg}
 		/>
