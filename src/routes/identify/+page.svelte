@@ -181,6 +181,6 @@
         </p>
     </div>
 </div>
-<div class="flex flex-col p-10 bg-white shadow-inner">
-    <div id="map" class="w-full h-96 lg:w-1/2 lg:flex-row rounded-md"></div>
+<div class="flex flex-col lg:flex-row p-10 bg-white shadow-inner">
+    <div id="map" class="w-full h-96 lg:w-1/2 rounded-md"></div>
 </div>
