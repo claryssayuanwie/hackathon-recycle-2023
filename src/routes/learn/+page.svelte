@@ -19,133 +19,54 @@
   import down from '$lib/assets/learnbg/down.png';
   import rightside from '$lib/assets/learnbg/rightside.png';
 
-  let currentImages;
-
+  let currentImages: string[];
+  let currentTab: string;
   changePlastic();
+
   function changePlastic() {
     currentImages =  [vk1, vk2, vk3, vk4, vk5, vk6, vk7];
+    currentTab = 'Plastic';
   }
 
   function changeGlass() {
     currentImages =  [glass1, glass2, glass3];
+    currentTab = 'Glass';
   }
 
   function changePaper() {
     currentImages =  [paper1, paper2, paper3];
+    currentTab = 'Paper';
   }
 </script>
 
-
-<hr class="new1" />
-
-
-<div class="content">
-  <!-- START OF PROFILE HEADER-------------------------------------------->
-  <div class="container">
-    <div class="row profileSection">
-      <div class="col-8 infoSection">
-        <center>
-        <div>
-          <h1><b><center>Learn about recycling codes!</center></b></h1>
+<div class="bg-gradient-to-t from-green-100 to-white to-50% lg:to-80%">
+    <div class="flex gap-10 flex-col w-full min-h-full items-center p-10">
+        <h1 class="font-bold text-4xl">Learn about recycling codes!</h1>
+        <ul class="flex gap-10 text-lg font-thin text-[#126a3a]">
+            <li><button class:hoverable={currentTab !== 'Plastic'} class:selected={currentTab === 'Plastic'} on:click={changePlastic}>Plastic</button></li>
+            <li><button class:hoverable={currentTab !== 'Glass'} class:selected={currentTab === 'Glass'} on:click={changeGlass}>Glass</button></li>
+            <li><button class:hoverable={currentTab !== 'Paper'} class:selected={currentTab === 'Paper'} on:click={changePaper}>Paper</button></li>
+        </ul>
+        <div class="flex flex-row flex-wrap px-20 justify-between gap-10">
+            {#each currentImages as image}
+                <div class="col-4">
+                <img alt="Card" class="w-80" src={image}/>
+                </div>
+            {/each}
         </div>
-        <!-- TODO: Add profile account name here-->
-        <div>
-          <ul>
-            <li class="cursor-pointer" on:click={changePlastic}> Plastic </li><li class="cursor-pointer" on:click={changeGlass}><a href="http://localhost:5173/learn"> Glass </a></li><li class="cursor-pointer" on:click={changePaper}><a href="http://localhost:5173/learn"> Paper </a></li>
-          </ul>
-        </div>
-        </center>
-      </div>
     </div>
-  </div>
-  <!-- END OF PROFILE HEADER....................................................................................-->
-
-
-  <hr class="new2" />
-
-
-  <!-- START OF POSTS GRID-------------------------------------------->
-  <div class="container">
-
-    <div class="grid-container">
-    {#each currentImages as image}
-        <div class="col-4">
-          <img
-            class="post"
-            src={image}
-          />
-        </div>
-    {/each}
-  </div>
-  <!-- END OF POSTS GRID-------------------------------------------->
-  <div class="container">
-    <img src={rightside} alt="top right border">
-    <div class="topright"></div>
-  </div>
-
-  <div class="container">
-    <img src={down} alt="bottom picture">
-    <div class="bottom"></div>
-  </div>
-
-
-</div>
+    <img alt="Bottom" src={down} class="w-full">
 </div>
 
 <style>
+    .selected {
+        padding-bottom: 0.25rem;
+        border-bottom-color: #126a3a;
+        border-bottom-width: 2px;
+    }
 
-.content {
-  width: 960px;
-  margin: auto;
-}
-
-h1 {
-  font-size: 40px;
-}
-.container {
-    display: flex;
-    flex-direction: column;
-}
-
-.grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    grid-template-rows: auto auto auto;
-    border-radius: 50px;
-    grid-gap: 10px;
-    padding: 10px;
-    align-content: center;
-  }
-  
-  .grid-container > div {
-    padding: 20px 0;
-    place-items: center;
-  }
-
-.post {
-  height: 250px;
-  width: 250px;
-  object-fit: cover;
-  margin-left: auto;
-  margin-right: auto;
-  grid-gap: 50px;
-  grid-template-columns: 250px 250px 250px;
-  grid-template-rows: 250px 250px 250px;
-  padding: 10px;
-  border-radius: 50px;
-}
-
-ul li{
-  display: inline;
-}
-
-.container {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-
-
-
+    .hoverable:hover {
+        opacity: 80%;
+    }
 </style>
 
