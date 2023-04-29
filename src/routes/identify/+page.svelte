@@ -2,11 +2,20 @@
     import type { PageData } from './$types';
     import { Loader } from '@googlemaps/js-api-loader';
 	import { browser } from '$app/environment';
+    import loadingImg from '$lib/assets/loading.gif';
     
     export let data: PageData;
 
     let infoWindowNode: HTMLDivElement;
-    let location: GeolocationCoordinates;   // todo: make DVC default if user block geolocation
+    let location: GeolocationCoordinates = {
+        accuracy: 14.96,
+        altitude: null,
+        altitudeAccuracy: null,
+        heading: null,
+        latitude: 37.9692655,
+        longitude: -122.0711031,
+        speed: null
+    };   // todo: make DVC default if user block geolocation
     let recycleInput: string;   // todo: cast to number so we don't have to deal with leading 0s
     let doTest = false;
 
@@ -15,6 +24,7 @@
      */
     const geoSuccess: PositionCallback = (position) => {
         location = position.coords;
+        console.log(position.coords);
         loadMap();
     };
 
@@ -181,6 +191,17 @@
         </p>
     </div>
 </div>
-<div class="flex flex-col lg:flex-row p-10 bg-white shadow-inner">
-    <div id="map" class="w-full h-96 lg:w-1/2 rounded-md"></div>
+<div class="flex flex-col lg:flex-row p-10 gap-10 bg-white shadow-inner">
+    <div id="map" class="w-full h-96 lg:w-1/2 rounded-md flex-shrink-0">
+        <div class="w-full h-full flex items-center justify-center">
+            <img alt="Loading" src={loadingImg} class="w-24">
+        </div>
+    </div>
+    <div>
+        <h2 class="text-2xl md:text-4xl mb-2">Don't throw your trash away!</h2>
+        <h3 class="text-lg md:text-2xl mb-2">Go to a <span class="text-[#126a3a] font-bold">recycling</span> center near you.</h3>
+        <p>Even if your trash can't be recycled in your bin at home, many specialized recycling centers will even take old
+            electronics and batteries to be reused or safely disposed of.
+        </p>
+    </div>
 </div>
