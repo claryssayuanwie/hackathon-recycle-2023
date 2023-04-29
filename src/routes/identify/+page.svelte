@@ -1,29 +1,125 @@
 <script lang="ts">
     import type { PageData } from './$types';
     import { Loader } from '@googlemaps/js-api-loader';
-    import recycleImg from '$lib/assets/recycle.png';
 	import { browser } from '$app/environment';
     
     export let data: PageData;
 
+    let infoWindowNode: HTMLDivElement;
+    let location: GeolocationCoordinates;   // todo: make DVC default if user block geolocation
     let recycleInput: string;   // todo: cast to number so we don't have to deal with leading 0s
     let doTest = false;
 
+    /*
+     * User geolocation for maps
+     */
+    const geoSuccess: PositionCallback = (position) => {
+        location = position.coords;
+        loadMap();
+    };
+
+    const geoError: PositionErrorCallback = (error) => {
+        console.error(error);
+        loadMap();  // Still loaded with default location
+    };
+    
     if (browser) {
+        infoWindowNode = document.createElement('div');
+        infoWindowNode.classList.add('flex', 'flex-col', 'gap-2', 'text-black');
+
+        const infoName: HTMLParagraphElement = document.createElement('p');
+        infoName.classList.add('font-bold');
+        infoWindowNode.appendChild(infoName);
+
+        const infoAddress: HTMLParagraphElement = document.createElement('p');
+        infoWindowNode.appendChild(infoAddress);
+
+        const infoPhoto: HTMLImageElement = document.createElement('img');
+        infoPhoto.classList.add('hidden', 'w-48');
+        infoWindowNode.appendChild(infoPhoto);
+
+        console.log(infoWindowNode);
+        window.infoWindowNode = infoWindowNode;
+
+        navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+    }
+
+    /*
+     * Map Widget
+     */
+     let activeInfoWindow: google.maps.InfoWindow;
+
+    function loadMap() {
         const loader = new Loader({
             apiKey: 'AIzaSyAZKhl-fBdi36iRbSQ_-AY4RE2HT6Iggyg',
             version: 'weekly'
         });
 
         loader.load().then(async () => {
-        const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
-        let map = new Map(document.getElementById("map") as HTMLElement, {
-            center: { lat: -34.397, lng: 150.644 },
-            zoom: 8,
+            const currentLoc = new google.maps.LatLng(location.latitude, location.longitude);
+
+            const { Map, InfoWindow } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
+            let map = new Map(document.getElementById("map") as HTMLElement, {
+                center: currentLoc,
+                zoom: 10,
+            });
+
+            const placesRequest = {
+                location: currentLoc,
+                radius: '16100',
+                keyword: 'recycling center'
+            }
+
+            const placesCallback = (results, status) => {
+                console.debug(results, status);
+                if (status == google.maps.places.PlacesServiceStatus.OK) {
+
+                    for (let i = 0; i < results.length; i++) {
+                        let place = results[i];
+                        if (place.business_status && place.business_status != 'OPERATIONAL') continue;
+
+                        const marker = new Marker({
+                            title: place.name,
+                            position: place.geometry.location,
+                            map: map
+                        });
+
+                        let infoNode = infoWindowNode.cloneNode(true) as HTMLDivElement;
+                        infoNode.getElementsByTagName('p')[0].textContent = place.name;
+                        infoNode.getElementsByTagName('p')[1].textContent = place.vicinity;
+
+                        if (place.photos?.length > 0) {
+                            infoNode.getElementsByTagName('img')[0].src = place.photos[0].getUrl();
+                            infoNode.getElementsByTagName('img')[0].classList.remove('hidden');
+                        }
+
+                        const infoWindow = new InfoWindow({
+                            content: infoNode.outerHTML
+                        });
+
+                        marker.addListener('click', () => {
+                            activeInfoWindow?.close();
+
+                            infoWindow.open({
+                                anchor: marker,
+                                map
+                            });
+                            activeInfoWindow = infoWindow; 
+                        })
+                    }
+                }
+            }
+
+            const { Marker } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary; 
+            const { PlacesService } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;
+            let placesService = new PlacesService(map);
+            placesService.nearbySearch(placesRequest, placesCallback);
         });
-    });
     }
 
+    /*
+     * Recycle identify input validation & updating
+     */
     function recycleKeypress(event: InputEvent) {
         if (!event.data) return;
 
@@ -85,6 +181,6 @@
         </p>
     </div>
 </div>
-<div class="p-10 bg-white shadow-inner">
-    <div id="map" class="w-96 h-96"></div>
+<div class="flex flex-col p-10 bg-white shadow-inner">
+    <div id="map" class="w-full h-96 lg:w-1/2 lg:flex-row rounded-md"></div>
 </div>
