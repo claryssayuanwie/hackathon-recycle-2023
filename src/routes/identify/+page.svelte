@@ -179,11 +179,9 @@
     </div>    
 </div>
 <!-- Information Section -->
-<!-- This is a hidden div used to load some tailwind classes that are programatically added -->
-<div class="hidden flex-row-reverse"></div>
-<div class="flex flex-col shadow-inner lg:px-20">
+<div class="flex flex-col shadow-inner p-10">
     {#each currentSectionsData as section, i}
-        <div class="flex items-center justify-center flex-col lg:{i % 2 == 0 ? 'flex-row' : 'flex-row-reverse'} gap-10 lg:gap-20 p-10 w-full">
+        <div class="flex items-center justify-center flex-col lg:odd:flex-row lg:even:flex-row-reverse gap-10 lg:gap-20 p-10 w-full">
             <img alt="Recycle Info" class="max-w-full max-h-96 sm:max-w-[60%] lg:max-w-[50%] rounded-md" src={section.image}>
             <div>
                 {#each section.paragraphs as paragraph}
@@ -201,7 +199,7 @@
             <img alt="Loading" src={loadingImg} class="w-24">
         </div>
     </div>
-    <div>
+    <div class="lg:max-w-xl">
         <h1 class="text-2xl md:text-4xl mb-2">Don't throw your trash away!</h1>
         <h2 class="text-lg md:text-2xl mb-2">Go to a <span class="text-[#126a3a] font-bold">recycling</span> center near you.</h2>
         <p>Even if your trash can't be recycled in your bin at home, many specialized recycling centers will even take old
