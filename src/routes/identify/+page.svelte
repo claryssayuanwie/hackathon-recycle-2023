@@ -36,7 +36,7 @@
     $: recycleInput && (doTest = !doTest);
 </script>
 
-<div class="shadow-xl bg-white w-full p-14 text-center">
+<div class="bg-white w-full p-14 text-center">
     <h1 class="text-2xl md:text-4xl mb-1">What's your trash made of?</h1>
     <p>Type in the number you see on your trash to discover how you can reduce, reuse, and recycle!</p>
     <div class="mb-20"></div>
@@ -72,7 +72,7 @@
         </div>
     </div>    
 </div>
-<div class="flex flex-col lg:flex-row gap-10 p-10 w-full">
+<div class="shadow-inner flex flex-col lg:flex-row gap-10 p-10 w-full">
     <img alt="Plastic" class="max-w-full lg:max-w-[50%] rounded-md" src="https://www.tasteofhome.com/wp-content/uploads/2022/05/coca-cola-attached-caps-courtesy-coca-cola.jpg?resize=1536,1024">
     <div>
         <p class="max-w-lg">The new Coke Zero formula tastes as if it has too much carbonation. In tasting a new bottle, the new formula burned my taste buds and left my tongue hurting for days. Anything I tried to eat or drink caused great pain! Terribly disappointed in Coke!</p>
@@ -85,6 +85,6 @@
         </p>
     </div>
 </div>
-<div class="p-10 bg-white">
+<div class="p-10 bg-white shadow-inner">
     <div id="map" class="w-96 h-96"></div>
 </div>
