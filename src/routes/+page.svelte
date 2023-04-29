@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import missionImg from '$lib/assets/home-mission.png';
+	import cornerImg from '$lib/assets/learnbg/home-corner.png';
 
 	export let data: PageData;
 </script>
@@ -29,3 +30,7 @@
 		/>
 	</div>
 </div>
+<!-- <div class="lg:hidden bg-white min-w-full h-20"></div>
+<div class="min-w-full bg-white">
+	<img alt="Corner" src={cornerImg} class="w-56 lg:w-96">
+</div> -->
