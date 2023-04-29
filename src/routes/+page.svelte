@@ -4,12 +4,12 @@
 	export let data: PageData;
 </script>
 
-<dir class="p-10 flex flex-col lg:flex-row bg-white w-full justify-between">
+<div class="p-10 gap-10 flex flex-col lg:flex-row bg-white w-full h-full justify-between">
 	<!-- Mission Statement -->
-	<div class="flex-">
-		<h2 class="mb-2 text-3xl font-thin underline decoration-slate-400/60">
+	<div class="">
+		<h1 class="mb-2 text-3xl font-thin underline decoration-slate-400/60">
 			We Recycle What Others Don't
-		</h2>
+		</h1>
 		<p>
 			There are many variations of passages of Lorem Ipsum available, but the majority have suffered
 			alteration in some form, by injected humour, or randomised words which don't look even
@@ -21,14 +21,14 @@
 			generated Lorem Ipsum is therefore always free from repetition, injected humour, or
 			non-characteristic words etc.
 		</p>
-        <button id="input">Discover</button>
+		<button id="input">Discover</button>
 	</div>
 	<!-- Image -->
-	<div class="flex-shrink-0">
+	<div class="flex-shrink-0 w-1/2">
 		<img
-			class="w-96"
+			class="w-full"
 			alt="About"
 			src="https://c8.alamy.com/comp/ETN0WC/fitness-man-drinking-milk-isolated-on-a-white-background-ETN0WC.jpg"
 		/>
 	</div>
-</dir>
+</div>

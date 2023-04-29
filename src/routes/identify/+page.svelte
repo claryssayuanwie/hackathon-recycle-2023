@@ -191,7 +191,7 @@
         </p>
     </div>
 </div>
-<div class="flex flex-col lg:flex-row p-10 gap-10 bg-white shadow-inner">
+<div class="flex flex-col-reverse lg:flex-row p-10 gap-10 bg-white shadow-inner">
     <div id="map" class="w-full h-96 lg:w-1/2 rounded-md flex-shrink-0">
         <div class="w-full h-full flex items-center justify-center">
             <img alt="Loading" src={loadingImg} class="w-24">
