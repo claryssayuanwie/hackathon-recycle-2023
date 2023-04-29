@@ -17,32 +17,37 @@
         speed: null
     };
     
-    let defaultTimeout: number;
+    let changeTimeout: number;
     let currentSectionsData = data.default.sections;
     let currentMaterial = '';
     let compounds: string[] = [];
     let recycleInput: string;
 
     $: {
+        clearTimeout(changeTimeout);
+
+        let newMaterial = '';
+        let newCompounds: string[] = [];
+        let newSections = data.default.sections;
+
         if (recycleInput && recycleInput.length > 0) {
             let inputId = Number(recycleInput);
 
             data.classifications.forEach((recyclable) => {
                 if (recyclable.id === inputId) {
-                    currentMaterial = recyclable.material;
-                    compounds = recyclable.compounds;
-                    currentSectionsData = recyclable.sections;
+                    newMaterial = recyclable.material;
+                    newCompounds = recyclable.compounds;
+                    newSections = recyclable.sections;
                     return;
                 }
             });
-            clearTimeout(defaultTimeout);
-        } else {
-            defaultTimeout = setTimeout(() => {
-                currentMaterial = '';
-                compounds = [];
-                currentSectionsData = data.default.sections;
-            }, 500);
         }
+
+        changeTimeout = setTimeout(() => {
+            currentMaterial = newMaterial;
+            compounds = newCompounds;
+            currentSectionsData = newSections;
+        }, 250);
     }
 
     /*

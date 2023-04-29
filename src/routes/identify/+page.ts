@@ -1,7 +1,10 @@
 import type { PageLoad } from './$types';
 
+// Default
 import defaultFirstImg from '$lib/assets/identify/default-first.png';
 import defaultSecondImg from '$lib/assets/identify/default-second.png';
+
+// Plastic
 import oneImg from '$lib/assets/identify/one.png';
 import twoImg from '$lib/assets/identify/two.png';
 import threeImg from '$lib/assets/identify/three.png';
@@ -9,6 +12,16 @@ import fourImg from '$lib/assets/identify/four.png';
 import fiveImg from '$lib/assets/identify/five.png';
 import sixImg from '$lib/assets/identify/six.png';
 import sevenImg from '$lib/assets/identify/seven.png';
+
+// Glass
+import seventyImg from '$lib/assets/identify/seventy.png';
+import seventyOneImg from '$lib/assets/identify/seventy-one.png';
+import seventyTwoImg from '$lib/assets/identify/seventy-two.png';
+
+// Paper
+import twentyImg from '$lib/assets/identify/twenty.png';
+import twentyOneImg from '$lib/assets/identify/twenty-one.png';
+import twentyTwoImg from '$lib/assets/identify/twenty-two.png';
 
 export const load = (async () => {
     return { 
@@ -26,6 +39,7 @@ export const load = (async () => {
             ]
         },
         classifications: [
+            // Plastic
             {
                 id: 1,
                 material: 'Plastic',
@@ -123,6 +137,86 @@ export const load = (async () => {
                         paragraphs: [
                             `You most likely have a biodegradable plastic cup or plasticware. These are not to be put in the recycling bin. They are vegetable based and you can dispose of them with your compostable food waste.`,
                             `However, these items aren’t heat safe. If your number 7 plastic has the word PLA or compostable near the 7 symbol, it is also recyclable.`,
+                        ]
+                    }
+                ]
+            },
+            // Glass
+            {
+                id: 70,
+                material: 'Glass',
+                compounds: ['Mixed Glass'],
+                sections: [
+                    {
+                        image: seventyImg,
+                        paragraphs: [
+                            
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 71,
+                material: 'Glass',
+                compounds: ['Clear Glass'],
+                sections: [
+                    {
+                        image: seventyOneImg,
+                        paragraphs: [
+                            
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 72,
+                material: 'Glass',
+                compounds: ['Green Glass'],
+                sections: [
+                    {
+                        image: seventyTwoImg,
+                        paragraphs: [
+                            
+                        ]
+                    }
+                ]
+            },
+            // Paper
+            {
+                id: 20,
+                material: 'Paper',
+                compounds: ['Cardboard'],
+                sections: [
+                    {
+                        image: twentyImg,
+                        paragraphs: [
+                            
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 21,
+                material: 'Paper',
+                compounds: ['Plain Paper'],
+                sections: [
+                    {
+                        image: twentyOneImg,
+                        paragraphs: [
+                            
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 22,
+                material: 'Paper',
+                compounds: ['Mixed Paper'],
+                sections: [
+                    {
+                        image: twentyTwoImg,
+                        paragraphs: [
+                            
                         ]
                     }
                 ]
