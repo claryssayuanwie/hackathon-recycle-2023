@@ -15,7 +15,9 @@
         latitude: 37.9692655,
         longitude: -122.0711031,
         speed: null
-    };   // todo: make DVC default if user block geolocation
+    };
+    
+    let currentSectionsData = data.default.sections;
     let recycleInput: string;   // todo: cast to number so we don't have to deal with leading 0s
     let doTest = false;
 
@@ -24,7 +26,7 @@
      */
     const geoSuccess: PositionCallback = (position) => {
         location = position.coords;
-        console.log(position.coords);
+        console.debug('Geolocation', position);
         loadMap();
     };
 
@@ -47,9 +49,6 @@
         const infoPhoto: HTMLImageElement = document.createElement('img');
         infoPhoto.classList.add('hidden', 'w-48');
         infoWindowNode.appendChild(infoPhoto);
-
-        console.log(infoWindowNode);
-        window.infoWindowNode = infoWindowNode;
 
         navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
     }
@@ -81,7 +80,7 @@
             }
 
             const placesCallback = (results, status) => {
-                console.debug(results, status);
+                console.debug('Places Response:', results, status);
                 if (status == google.maps.places.PlacesServiceStatus.OK) {
 
                     for (let i = 0; i < results.length; i++) {
@@ -142,6 +141,7 @@
     $: recycleInput && (doTest = !doTest);
 </script>
 
+<!-- Identifier Tool -->
 <div class="bg-white w-full p-14 text-center">
     <h1 class="text-2xl md:text-4xl mb-1">What's your trash made of?</h1>
     <p>Type in the number you see on your trash to discover how you can reduce, reuse, and recycle!</p>
@@ -178,19 +178,23 @@
         </div>
     </div>    
 </div>
-<div class="shadow-inner flex flex-col lg:flex-row gap-10 p-10 w-full">
-    <img alt="Plastic" class="max-w-full lg:max-w-[50%] rounded-md" src="https://www.tasteofhome.com/wp-content/uploads/2022/05/coca-cola-attached-caps-courtesy-coca-cola.jpg?resize=1536,1024">
-    <div>
-        <p class="max-w-lg">The new Coke Zero formula tastes as if it has too much carbonation. In tasting a new bottle, the new formula burned my taste buds and left my tongue hurting for days. Anything I tried to eat or drink caused great pain! Terribly disappointed in Coke!</p>
-        <br>
-        <p>Coke...how could you do this to us Coke brand lovers AGAIN? You'd think you learned a lesson previously. Nope. The new red label Coke Zero Sugar is disgusting. I'll buy up all the black label I can. You had a winner but had to change it? Why? So unhappy.
-        </p>
-        <br>
-        <p>
-            The new Coke Zero is awful. The original version was very good, I hope Coke makes the original formula available again. Pepsi Zero is much better than the terrible new Coke Zero formula. I will buy Pepsi Zero if the original version of Coke Zero is not sold.
-        </p>
-    </div>
+<!-- Information Section -->
+<!-- This is a hidden div used to load some tailwind classes that are programatically added -->
+<div class="hidden flex-row-reverse"></div>
+<div class="flex flex-col shadow-inner lg:px-20">
+    {#each currentSectionsData as section, i}
+        <div class="flex items-center justify-center flex-col lg:{i % 2 == 0 ? 'flex-row' : 'flex-row-reverse'} gap-10 lg:gap-20 p-10 w-full">
+            <img alt="Recycle Info" class="max-w-full max-h-96 sm:max-w-[60%] lg:max-w-[50%] rounded-md" src={section.image}>
+            <div>
+                {#each section.paragraphs as paragraph}
+                    <p class="max-w-xl text-lg">{paragraph}</p>
+                    <br>
+                {/each}
+            </div>
+        </div>
+    {/each}
 </div>
+<!-- Map Section -->
 <div class="flex flex-col-reverse lg:flex-row p-10 gap-10 bg-white shadow-inner">
     <div id="map" class="w-full h-96 lg:w-1/2 rounded-md flex-shrink-0">
         <div class="w-full h-full flex items-center justify-center">
