@@ -17,9 +17,33 @@
         speed: null
     };
     
+    let defaultTimeout: number;
     let currentSectionsData = data.default.sections;
-    let recycleInput: string;   // todo: cast to number so we don't have to deal with leading 0s
-    let doTest = false;
+    let currentMaterial = '';
+    let compounds: string[] = [];
+    let recycleInput: string;
+
+    $: {
+        if (recycleInput && recycleInput.length > 0) {
+            let inputId = Number(recycleInput);
+
+            data.classifications.forEach((recyclable) => {
+                if (recyclable.id === inputId) {
+                    currentMaterial = recyclable.material;
+                    compounds = recyclable.compounds;
+                    currentSectionsData = recyclable.sections;
+                    return;
+                }
+            });
+            clearTimeout(defaultTimeout);
+        } else {
+            defaultTimeout = setTimeout(() => {
+                currentMaterial = '';
+                compounds = [];
+                currentSectionsData = data.default.sections;
+            }, 500);
+        }
+    }
 
     /*
      * User geolocation for maps
@@ -137,8 +161,6 @@
             if (!(charCode >= 48 && charCode <= 57)) event.preventDefault();
         }
     }
-
-    $: recycleInput && (doTest = !doTest);
 </script>
 
 <!-- Identifier Tool -->
@@ -152,9 +174,9 @@
                 <h3>Material</h3>
             </div>
             <ul class="text-lg text-black/20">
-                <li>Plastic</li> 
-                <li class:text-black={doTest}>Glass</li> 
-                <li>Paper</li> 
+                <li class:text-black={currentMaterial === 'Plastic'}>Plastic</li> 
+                <li class:text-black={currentMaterial === 'Glass'}>Glass</li> 
+                <li class:text-black={currentMaterial === 'Paper'}>Paper</li> 
             </ul>
         </div>
         <div class="relative flex-shrink-0">
@@ -170,10 +192,13 @@
             <input on:beforeinput={recycleKeypress} bind:value={recycleInput} placeholder="#" type="text" maxlength="2" class="placeholder-black/20 border-b-4 border-black absolute top-[32%] left-[32%] font-bold text-5xl w-24 rounded-t-full text-center outline-none">
         </div>
         <div class="w-96 text-center">
-            <div class="b-2 pb-1 border-b-2 border-b-[#8ec543]/50 p-2 inline-block font-thin text-2xl">
+            <div class="mb-2 pb-1 border-b-2 border-b-[#8ec543]/50 p-2 inline-block font-thin text-2xl">
                 <h3>Category</h3>
-                </div>
-            <ul class="text-lg text-black/20">
+            </div>
+            <ul class="text-lg text-black">
+                {#each compounds as compound}
+                    <li>{compound}</li>
+                {/each}
             </ul>
         </div>
     </div>    
