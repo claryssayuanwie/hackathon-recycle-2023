@@ -15,7 +15,7 @@
 			There are many different types of trash in the world but not everything can be recycled. But that also doesn’t mean we have to throw out what we can’t recycle!
 		</p>
 		<a href="/learn">
-			<button class="bg-red mt-10 rounded-full bg-[#8ec543] py-2 px-4 hover:opacity-80">
+			<button class="bg-red mt-10 rounded-full bg-[#8ec543] py-2 px-4 hover:opacity-80 font-thin">
 				Learn More
 			</button>
 		</a>
