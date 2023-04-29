@@ -6,7 +6,7 @@
 
 <div class="relative flex py-8 pl-10 pr-24 items-center justify-center gap-5 md:gap-10 bg-white w-full">
     <div class="md:absolute left-10 my-5 flex-shrink-0">
-        <img alt="Logo" src={logo} class="h-10">
+        <a href="/"><img alt="Logo" src={logo} class="h-10"></a>
     </div>
     <div class="md:ml-10">
         <ul class="flex flex-row gap-5 md:gap-14 text-md md:text-lg font-thin">
