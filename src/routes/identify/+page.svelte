@@ -149,7 +149,7 @@
     <div class="flex flex-col items-center lg:items-start lg:flex-row gap-10 justify-between px-20">
         <div class="w-96 text-center">
             <div class="mb-2 pb-1 border-b-2 border-b-[#8ec543]/50 p-2 inline-block font-thin text-2xl">
-                <h2>Material</h2>
+                <h3>Material</h3>
             </div>
             <ul class="text-lg text-black/20">
                 <li>Plastic</li> 
@@ -171,7 +171,7 @@
         </div>
         <div class="w-96 text-center">
             <div class="b-2 pb-1 border-b-2 border-b-[#8ec543]/50 p-2 inline-block font-thin text-2xl">
-                <h2>Category</h2>
+                <h3>Category</h3>
                 </div>
             <ul class="text-lg text-black/20">
             </ul>
@@ -198,8 +198,8 @@
         </div>
     </div>
     <div>
-        <h2 class="text-2xl md:text-4xl mb-2">Don't throw your trash away!</h2>
-        <h3 class="text-lg md:text-2xl mb-2">Go to a <span class="text-[#126a3a] font-bold">recycling</span> center near you.</h3>
+        <h1 class="text-2xl md:text-4xl mb-2">Don't throw your trash away!</h1>
+        <h2 class="text-lg md:text-2xl mb-2">Go to a <span class="text-[#126a3a] font-bold">recycling</span> center near you.</h2>
         <p>Even if your trash can't be recycled in your bin at home, many specialized recycling centers will even take old
             electronics and batteries to be reused or safely disposed of.
         </p>
