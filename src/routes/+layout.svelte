@@ -1,10 +1,11 @@
 <script lang="ts">
     import type { LayoutData } from './$types';
+    import { page } from '$app/stores';
+    import Header from '../components/Header.svelte';
     import '../app.css';
-	import Header from '../components/Header.svelte';
     
     export let data: LayoutData;
 </script>
 
-<Header />
+<Header  current={$page.data.title} />
 <slot />

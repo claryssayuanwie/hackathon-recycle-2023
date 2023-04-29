@@ -1,16 +1,24 @@
 <script lang="ts">
     import logo from '$lib/assets/logo.png';
+
+    export let current: string = '';
 </script>
 
-<div class="flex py-5 pl-10 pr-24 justify-between items-center gap-10 bg-white">
-    <div class="flex-shrink-0">
+<div class="relative flex py-8 pl-10 pr-24 items-center justify-center gap-5 md:gap-10 bg-white w-full">
+    <div class="md:absolute left-10 my-5 flex-shrink-0">
         <img alt="Logo" src={logo} class="h-10">
     </div>
-    <div>
-        <ul class="flex flex-row gap-5">
-            <li><a href="/">Home</a></li>
-            <li><a href="/scan">Scan</a></li>
-            <li><a href="/learn">Learn</a></li>
+    <div class="md:ml-10">
+        <ul class="flex flex-row gap-5 md:gap-14 text-md md:text-lg font-thin">
+            <li><a class:font-normal={current === 'Home'} href="/">Home</a></li>
+            <li><a class:font-normal={current === 'Identify'} href="/identify">Identify</a></li>
+            <li><a class:font-normal={current === 'Learn'} href="/learn">Learn</a></li>
         </ul>
     </div>
 </div>
+
+<style>
+    a:hover {
+        font-weight: normal;
+    }
+</style>

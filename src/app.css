@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,8 +12,9 @@ html, body {
 }
 
 body {
-    /* background-color: #f9f9f9; */
+    font-family: 'Open Sans', sans-serif;
 }
+
 #input {
     background-color: #405de6;
     color: white;
