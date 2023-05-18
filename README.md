@@ -1,5 +1,5 @@
 # Recyclifi #
-<pre>🏆  Viking Hacks 2023 1st Place and Best Design Winner</pre>
+<pre>🏆  Viking Hacks 2023 1st Place and Best Design Winner (<a href="https://viking-hacks-2023.devpost.com/">Devpost</a>)</pre>
 ----------
 
 Recyclifi is a utility website for learning more about recycling.
