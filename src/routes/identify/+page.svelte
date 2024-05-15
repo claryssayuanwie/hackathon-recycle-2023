@@ -89,7 +89,7 @@
 
     function loadMap() {
         const loader = new Loader({
-            apiKey: 'AIzaSyAZKhl-fBdi36iRbSQ_-AY4RE2HT6Iggyg',
+            apiKey: 'AIzaSyAzKNswJ4sSV-qbP7GRP3hbjH3Dn-V7ZWI',
             version: 'weekly'
         });
 
